@@ -5,7 +5,7 @@ homeDir=$(eval echo "~$installUser")
 echo "Setting up oh-my-psh for $installUser in $homeDir"
 
 ompThemeFolder="$homeDir/.poshthemes"
-ompTheme="powerlevel10k_rainbow.omp.json"
+ompTheme="practical-pure.omp.json"
 
 # install dependencies
 echo "--- Installing dependencies"
@@ -27,6 +27,10 @@ if [ ! -d "$ompThemeFolder" ]; then
     mkdir $ompThemeFolder
     wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -qO $archive
     unzip $archive -d $ompThemeFolder
+
+    wget https://github.com/Kuyoh/ShellSetup/archive/refs/heads/main.zip -qO $archive
+    unzip -j $archive "ShellSetup-main/themes/practical-pure.omp.json" -d $ompThemeFolder
+
     chmod u+rw $ompThemeFolder/*.json
     chown -R $installUser $ompThemeFolder
 fi
