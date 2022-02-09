@@ -1,0 +1,125 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "#BF616A",
+          "properties": {
+            "template": "{{ .UserName }} "
+          },
+          "style": "plain",
+          "type": "session"
+        },
+        {
+          "foreground": "#81A1C1",
+          "properties": {
+            "style": "full",
+            "template": "{{ .Path }} "
+          },
+          "style": "plain",
+          "type": "path"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "#6C6C6C",
+          "properties": {
+            "branch_ahead_icon": "<#88C0D0>\u21e1 </>",
+            "branch_behind_icon": "<#88C0D0>\u21e3 </>",
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "github_icon": "",
+            "template": " {{ .HEAD }}{{ if .Staging.Changed }} \uF046 {{ .Staging.String }} {{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} | {{ end }}{{ if .Working.Changed }} \uF044 {{ .Working.String }} {{ end }}"
+          },
+          "style": "plain",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "properties": {
+            "threshold": 500,
+            "style": "round",
+            "template": " <#fefefe>\ufbab</> "
+          },
+          "style": "plain",
+          "type": "executiontime"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "#A3BE8C",
+          "properties": {
+            "style": "austin",
+            "template": "{{ .FormattedMs }}  "
+          },
+          "style": "plain",
+          "type": "executiontime"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#7262b6",
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}#5e0009{{ end }}"
+          ],
+          "properties": {
+            "always_enabled": true,
+            "template": "\u276f "
+          },
+          "style": "plain",
+          "type": "exit"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "transient_prompt": {
+    "background": "transparent",
+    "foreground": "#7262b6",
+    "template": "{{ .Shell }} \u276f "
+  },
+  "tooltips": [
+    {
+      "type": "kubectl",
+      "tips": ["kubectl"],
+      "style": "plain",
+      "foreground": "#BF616A",
+      "properties": {
+        "template": " on {{.Context}} {{if .Namespace}}- {{.Namespace}} namespace{{end}} "
+      }
+    },
+    {
+      "type": "az",
+      "tips": ["az"],
+      "style": "plain",
+      "foreground": "#9ec3f0",
+      "properties": {
+        "template": " \ufd03 Subscription {{ .Name }} ({{ if .EnvironmentName | contains \"AzureCloud\" }}{{ \"Global\" }}{{ else }}{{ .EnvironmentName }}{{ end }}) "
+      }
+    }
+  ],
+  "console_title": true,
+  "console_title_style": "template",
+  "console_title_template": "{{if .Root}}(Admin){{end}} {{.PWD}}",
+  "version": 1
+}

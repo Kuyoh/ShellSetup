@@ -5,6 +5,7 @@ It relies mainly on oh-my-posh, zsh/bash/powershell.
 ## Debian-base
 
 For now this is tested only with Ubuntu/gnome, but it should apply to other debian-based distributions.
+
 ### Terminal setup
 
 For your terminals to work with oh-my-posh themes, a nerdfont is required.

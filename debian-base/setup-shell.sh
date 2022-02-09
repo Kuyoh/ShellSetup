@@ -37,6 +37,8 @@ isInteractiveShell="( ! -z \"$PS1\" )"
 if [ -z "$(grep $homeDir/.zshrc -e oh-my-posh)" ]; then 
     echo "--- Configuring oh-my-posh for zsh"
     echo "eval \"\$(oh-my-posh --init --shell zsh --config $ompThemeFolder/$ompTheme)\"" >> $homeDir/.zshrc
+    echo "enable_poshtransientprompt" >> $homeDir/.zshrc
+    echo "enable_poshtooltips" >> $homeDir/.zshrc
     chown -R $USER $homeDir/.zshrc
 fi
 if [ $isInteractiveShell -a "$SHELL" = "/usr/bin/zsh" ]; then
