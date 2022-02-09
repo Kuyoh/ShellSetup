@@ -4,13 +4,23 @@ installUser=${1:-$USER}
 homeDir=$(eval echo "~$installUser")
 echo "Setting up oh-my-psh for $installUser in $homeDir"
 
+omzFolder="$homeDir/.oh-my-zsh"
 ompThemeFolder="$homeDir/.poshthemes"
 ompTheme="practical-pure.omp.json"
 
 # install dependencies
 echo "--- Installing dependencies"
 sudo apt-get update -q
-sudo apt-get install -qy zsh wget unzip
+sudo apt-get install -qy zsh wget unzip git
+
+# install & configure oh-my-zsh
+if [ ! -d "$omzFolder" ]; then
+    CHSH='no' RUNZSH='no' sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    git clone https://github.com/zsh-users/zsh-completions.git $omzFolder/custom/plugins/zsh-completions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $omzFolder/custom/plugins/zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git $omzFolder/custom/plugins/zsh-autosuggestions
+    sed -i "s/plugins=.git./plugins=(git dotnet pip npm docker docker-compose kubectl terraform dircycle command-not-found zsh-completions zsh-autosuggestions zsh-syntax-highlighting)/" $homeDir/.zshrc
+fi
 
 # install oh-my-posh
 if [ ! -f "/usr/local/bin/oh-my-posh" ]; then

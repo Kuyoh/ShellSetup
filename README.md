@@ -1,5 +1,5 @@
 This repository contains script I use to configure my shells.
-It relies mainly on oh-my-posh, zsh/bash/powershell.
+It relies mainly on instlaling and configuring oh-my-posh, oh-mz-zsh/bash/powershell.
 
 # Installation
 ## Debian-base
