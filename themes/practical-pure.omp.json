@@ -103,7 +103,7 @@
       "type": "kubectl",
       "tips": ["kubectl"],
       "style": "plain",
-      "foreground": "#BF616A",
+      "foreground": "#2f4fff",
       "properties": {
         "template": " on {{.Context}} {{if .Namespace}}- {{.Namespace}} namespace{{end}} "
       }
@@ -112,9 +112,55 @@
       "type": "az",
       "tips": ["az"],
       "style": "plain",
-      "foreground": "#9ec3f0",
+      "foreground": "#2260d3",
       "properties": {
         "template": " \ufd03 Subscription {{ .Name }} ({{ if .EnvironmentName | contains \"AzureCloud\" }}{{ \"Global\" }}{{ else }}{{ .EnvironmentName }}{{ end }}) "
+      }
+    },
+    {
+      "type": "angular",
+      "tips": ["ng"],
+      "style": "plain",
+      "foreground": "#fa4a67",
+      "properties": {
+        "fetch_version": true,
+        "template": " \uE753 {{ .Full }} "
+      }
+    },
+    {
+      "type": "node",
+      "tips": ["node"],
+      "style": "plain",
+      "foreground": "#6af381",
+      "properties": {
+        "template": " \uE718 {{ .Full }} "
+      }
+    },
+    {
+      "type": "python",
+      "tips": ["python", "pip"],
+      "style": "plain",
+      "foreground": "#fadf4a",
+      "properties": {
+        "template": " \uE235 {{ .Full }} "
+      }
+    },
+    {
+      "type": "rust",
+      "tips": ["rustc", "cargo"],
+      "style": "plain",
+      "foreground": "#cebb50",
+      "properties": {
+        "template": " \uE7a8 {{ .Full }} "
+      }
+    },
+    {
+      "type": "terraform",
+      "tips": ["terraform"],
+      "style": "plain",
+      "foreground": "#6750ce",
+      "properties": {
+        "template": " {{.WorkspaceName}} "
       }
     }
   ],

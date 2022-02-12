@@ -50,6 +50,14 @@ isInteractiveShell="( ! -z \"$PS1\" )"
 # configure zsh
 if [ -z "$(grep $homeDir/.zshrc -e oh-my-posh)" ]; then 
     echo "--- Configuring oh-my-posh for zsh"
+
+    # fix for omz/xterm-256, where home and end keys are not correctly mapped by default
+    echo "if [[ "$TERM" == "xterm-256color" ]]; then" >> $homeDir/.zshrc
+    echo "    bindkey "^[[H" beginning-of-line" >> $homeDir/.zshrc
+    echo "    bindkey "^[[F" end-of-line" >> $homeDir/.zshrc
+    echo "fi" >> $homeDir/.zshrc
+
+    # oh-my-posh initialization
     echo "eval \"\$(oh-my-posh --init --shell zsh --config $ompThemeFolder/$ompTheme)\"" >> $homeDir/.zshrc
     echo "enable_poshtransientprompt" >> $homeDir/.zshrc
     echo "enable_poshtooltips" >> $homeDir/.zshrc
