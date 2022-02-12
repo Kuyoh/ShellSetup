@@ -52,9 +52,9 @@ if [ -z "$(grep $homeDir/.zshrc -e oh-my-posh)" ]; then
     echo "--- Configuring oh-my-posh for zsh"
 
     # fix for omz/xterm-256, where home and end keys are not correctly mapped by default
-    echo "if [[ "$TERM" == "xterm-256color" ]]; then" >> $homeDir/.zshrc
-    echo "    bindkey "^[[H" beginning-of-line" >> $homeDir/.zshrc
-    echo "    bindkey "^[[F" end-of-line" >> $homeDir/.zshrc
+    echo "if [[ \"\$TERM\" == \"xterm-256color\" ]]; then" >> $homeDir/.zshrc
+    echo "    bindkey \"^[[H\" beginning-of-line" >> $homeDir/.zshrc
+    echo "    bindkey \"^[[F\" end-of-line" >> $homeDir/.zshrc
     echo "fi" >> $homeDir/.zshrc
 
     # oh-my-posh initialization
@@ -79,3 +79,15 @@ if [ $isInteractiveShell -a "$SHELL" = "/bin/bash" ]; then
     eval "$(oh-my-posh --init --shell bash --config $ompThemeFolder/$ompTheme)"
 fi
 
+
+if command -v pwsh &> /dev/null; then
+    pwshProfile=$(pwsh -Command "echo \$PROFILE")
+    if [ -z "$(grep $pwshProfile -e oh-my-posh)" ]; then
+        mkdir -p $(dirname $pwshProfile)
+        echo "--- Configuring oh-my-posh for pwsh"
+        echo "oh-my-posh --init --shell pwsh --config $ompThemeFolder/$ompTheme | Invoke-Expression" >> $pwshProfile
+        echo "Enable-PoshTransientPrompt" >> $pwshProfile
+        echo "Enable-PoshTooltips" >> $pwshProfile
+        chown -R $USER $pwshProfile
+    fi
+fi
