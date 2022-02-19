@@ -1,0 +1,8 @@
+FROM alpine:latest
+
+RUN apk --no-cache add bash
+COPY linux/setup-shell.sh /workspace/setup-shell.sh
+RUN /bin/bash /workspace/setup-shell.sh root && \
+    rm /workspace/setup-shell.sh
+
+CMD [ "/bin/zsh" ]

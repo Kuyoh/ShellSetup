@@ -1,0 +1,7 @@
+FROM centos:7
+
+COPY linux/setup-shell.sh /workspace/setup-shell.sh
+RUN /bin/bash /workspace/setup-shell.sh root && \
+    rm /workspace/setup-shell.sh
+
+CMD [ "/usr/bin/zsh" ]

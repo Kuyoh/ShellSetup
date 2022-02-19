@@ -1,0 +1,8 @@
+FROM debian:stable-slim
+
+COPY linux/setup-shell.sh /workspace/setup-shell.sh
+RUN /bin/bash /workspace/setup-shell.sh root && \
+    rm /workspace/setup-shell.sh && \
+    rm -rf /apt/cache
+
+CMD [ "/usr/bin/zsh" ]

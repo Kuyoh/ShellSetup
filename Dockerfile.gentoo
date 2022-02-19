@@ -1,0 +1,9 @@
+FROM gentoo/portage:latest as portage
+FROM gentoo/stage3:latest
+COPY --from=portage /var/db/repos/gentoo /var/db/repos/gentoo
+
+COPY linux/setup-shell.sh /workspace/setup-shell.sh
+RUN /bin/bash /workspace/setup-shell.sh root && \
+    rm /workspace/setup-shell.sh
+
+CMD [ "/usr/bin/zsh" ]
